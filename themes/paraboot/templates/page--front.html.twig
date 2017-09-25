@@ -1,0 +1,249 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a single page.
+ *
+ * The doctype, html, head and body tags are not in this template. Instead they
+ * can be found in the html.html.twig template in this directory.
+ *
+ * Available variables:
+ *
+ * General utility variables:
+ * - base_path: The base URL path of the Drupal installation. Will usually be
+ *   "/" unless you have installed Drupal in a sub-directory.
+ * - is_front: A flag indicating if the current page is the front page.
+ * - logged_in: A flag indicating if the user is registered and signed in.
+ * - is_admin: A flag indicating if the user has permission to access
+ *   administration pages.
+ *
+ * Front-page:
+ * - front page display to your website look like of front. 
+ *
+ * Site identity:
+ * - front_page: The URL of the front page. Use this instead of base_path when
+ *   linking to the front page. This includes the language domain or prefix.
+ *
+ * Navigation:
+ * - breadcrumb: The breadcrumb trail for the current page.
+ * Regions:
+ * - page.header: Items for the header region.
+ * - page.navigation: Items for the navigation region.
+ * - page.navigation_collapsible: Items for the navigation (collapsible) region.
+ * - page.highlighted: Items for the highlighted content region.
+ * - page.help: Dynamic help text, mostly for admin pages.
+ * - page.sidebar_first: Items for the first sidebar.
+ * - page.sidebar_second: Items for the second sidebar.
+ * - page.service: Item for the service region
+ * - page.portfolio: Item for the portfolio region
+ * - page.testimonia: Item for the testimonial region
+ * - page.our_team: Item for the team region
+ * - page.contact_one: Item for the contact_one region
+ * - page.contact_two: Item for the contact_two region
+ * - page.footer_one: Items for the footer one region.
+ * - page.footer_two: Items for the footer second region.
+ * - page.footer_three: Items for the footer third region.
+ * - page.footer_fourth: Items for the footer fourth region.
+ * - page.footer_fifth: Items for the footer fifth region.
+ */
+#}
+
+{{ attach_library('paraboot/global-styling') }}
+
+<div class="hero-image" id="myPage">
+ {% if page.navigation or page.navigation_collapsible %}
+  {% block navbar %}
+{{ attach_library('paraboot/global-styling') }}
+ <nav class="navbar  ">
+  <div class="container">
+    <div class="navbar-header">
+      {{ page.navigation }}
+        {# .btn-navbar is used as the toggle for collapsed navbar content #}
+        {% if page.navigation_collapsible %}
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="sr-only">{{ 'Toggle navigation'|t }}</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    
+      {% endif %}
+    </div>
+    {# Navigation (collapsible) #}
+    {% if page.navigation_collapsible %}
+    <div class="collapse navbar-collapse" id="myNavbar">
+      {{ page.navigation_collapsible }}
+      
+    </div>
+  </div>
+  {% endif %}
+ </nav>
+{% endblock %}
+{% endif %}
+
+
+ <div class="jumbotron">
+   <div class="hero-text">
+      <h1>Paraboot</h1> 
+      <p>Thank you for using my theme 
+      </p> 
+     
+     <div > <a href="#myPage-footer" title="To Down">
+     <span class="glyphicon glyphicon-chevron-down"></span>
+     </a></div>         
+   </div>
+ </div>
+</div>
+{% if page.service %}
+  {% block service %}
+    {{ attach_library('paraboot/global-styling') }}
+    <div id="services" class="container-fluid text-center">
+
+    {{ page.service }}
+      
+</div>
+  {% endblock %}
+{% endif %}
+
+
+
+<!-- Container (Portfolio Section) -->
+
+{% if page.portfolio %}
+  {% block portfolio %}
+  {{ attach_library('paraboot/global-styling') }}
+<div id="our-work" class="container-fluid text-center bg-grey">
+  {{ page.portfolio }}
+
+ 
+ </div>
+ {% endblock %}
+ {% endif %}
+
+
+{% if page.testimonial %}
+  {% block testimonial %}
+  {{ attach_library('paraboot/global-styling') }}
+<div class="container-fluid container-say text-center item-content">   
+ 
+  {{ page.testimonial }}
+ 
+</div>
+{% endblock %}
+{% endif %}
+
+
+<!--Our Team-->
+{% if page.our_team %}
+  {% block our_team %}
+  {{ attach_library('paraboot/global-styling') }}
+<div id="team" class="container-fluid text-center">
+   {{ page.our_team }}
+ 
+  </div>
+  {% endblock %}
+{% endif %}
+
+<!-- Container (Contact Section) -->
+
+  {% block contact %}
+  {{ attach_library('paraboot/global-styling') }}
+<div id="contact" class="container-fluid container-contact bg-grey" role="contact">
+
+  <div class="row">
+   {% if page.contact_one %}
+     {% block contact_one %}
+       <div class="col-sm-5 slide">
+          {{ page.contact_one }}
+        </div>
+     {% endblock %}
+   {% endif %}
+
+    {% if page.contact_two %}
+     {% block contact_two %}
+       <div class="col-sm-7 ">
+         {{ page.contact_two }}
+     
+        </div>
+     {% endblock %}
+   {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+
+
+
+ {% block footer %}
+  {{ attach_library('paraboot/global-styling') }}
+<footer class="container-fluid text-center" role="footer">
+
+ 
+
+<div class="container">
+ <div class="row">
+     {% if page.footer_one %}
+       {% block footer_one %}
+       <div class="col-md-4 col-sm-6 footerleft ">
+         {{ page.footer_one }}
+         
+       </div>
+       {% endblock %}
+     {% endif %}
+
+      {% if page.footer_two %}
+        {% block footer_two %}
+         <div class="col-md-2 col-sm-6 paddingtop-bottom">
+           {{ page.footer_two }}
+          
+         </div>
+       {% endblock %}
+      {% endif %}
+      {% if page.footer_three %}
+        {% block footer_three %}
+         <div class="col-md-3 col-sm-6 paddingtop-bottom">
+            {{ page.footer_three }}
+           
+         </div>
+        {% endblock %}
+      {% endif %}
+
+      {% if page.footer_fourth %}
+        {% block footer_fourth %}
+          <div class="col-md-3 col-sm-6 paddingtop-bottom">
+             {{ page.footer_fourth }}
+          
+
+       </div>
+      {% endblock %}  
+    {% endif %}
+   </div>
+  </div>
+  </footer>
+
+
+
+ <div class="copyright" id="myPage-footer">
+     
+  <div class="container text-center">
+    <div > <a href="#myPage" title="To Top">
+     <span class="glyphicon glyphicon-chevron-up"></span>
+    </a></div>
+    <div class="col-md-6">
+      <p>© 2017 - Powered by OpenSenseLab</p>
+    </div>
+       {% if page.footer_fifth %}
+        {% block footer_fifth %}
+       <div class="col-md-6" float="right">
+         {{ page.footer_fifth }}
+       </div>
+     {% endblock %}  
+    {% endif %}
+ </div>
+</div>
+{% endblock %} 
+
+
+
+   
+
+

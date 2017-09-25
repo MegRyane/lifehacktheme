@@ -1,0 +1,10 @@
+global-styling:
+  css:
+    theme:
+      css/style.css: {}
+      css/my.css: {}
+      css/footer.css: {}
+  
+  
+  
+    
